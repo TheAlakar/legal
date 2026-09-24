@@ -1,48 +1,734 @@
 <!DOCTYPE html>
-  <html lang="tr">
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Zula - Gizlilik Politikasi ve Aydinlatma Metni</title>
-    <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; }
-          .container { background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        h1 { color: #1a1a1a; border-bottom: 2px solid #eaeaea; padding-bottom: 12px; margin-bottom: 20px; }
-        h2 { color: #2c3e50; margin-top: 28px; }
-        .badge { display: inline-block; background-color: #007aff; color: white; padding: 4px 12px; border-radius: 16px; font-size: 0.9em; font-weight: 600; margin-bottom: 20px; }
-        p, li { color: #555; font-size: 15px; }
-        ul { padding-left: 20px; }
-        .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; text-align: center; font-size: 0.85em; color: #888; }
-    </style>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zula — Gizlilik Politikası ve Aydınlatma Metni</title>
+  <meta name="description" content="Zula mobil uygulaması resmi Gizlilik Politikası ve Aydınlatma Metni sayfası. KVKK ve GDPR uyumlu veri koruma ilkeleri.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #059669;
+      --primary-hover: #047857;
+      --primary-light: #ecfdf5;
+      --primary-border: #a7f3d0;
+      --accent: #10b981;
+      --bg: #090d16;
+      --surface: #111827;
+      --surface-card: #162032;
+      --border: #1f293d;
+      --border-light: #2d3b55;
+      --text: #f3f4f6;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --badge-bg: rgba(16, 185, 129, 0.12);
+      --badge-border: rgba(16, 185, 129, 0.28);
+      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding: 0;
+      margin: 0;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Background glow effect */
+    .bg-glow {
+      position: fixed;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, rgba(5, 150, 105, 0.05) 50%, transparent 80%);
+      filter: blur(80px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 48px 24px 96px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      margin-bottom: 56px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: var(--badge-bg);
+      border: 1px solid var(--badge-border);
+      border-radius: 9999px;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    .brand-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+    }
+
+    h1 {
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: #ffffff;
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      font-size: 17px;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 0 auto 20px;
+    }
+
+    .meta-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      font-size: 13px;
+      color: var(--text-dim);
+      flex-wrap: wrap;
+    }
+
+    .meta-bar span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Fast Nav Sticky Bar */
+    .nav-tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 12px;
+      margin-bottom: 36px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      position: sticky;
+      top: 16px;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-tabs a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 10px;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .nav-tabs a:hover {
+      color: #ffffff;
+      background: var(--surface-card);
+    }
+
+    /* Cards */
+    .policy-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      transition: border-color 0.2s ease;
+    }
+
+    .policy-card:hover {
+      border-color: var(--border-light);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .card-num {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: var(--surface-card);
+      border: 1px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: var(--accent);
+      font-size: 15px;
+      font-family: var(--font-mono);
+    }
+
+    h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.3px;
+    }
+
+    p {
+      color: var(--text-muted);
+      font-size: 15px;
+      margin-bottom: 16px;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    ul, ol {
+      margin-left: 20px;
+      margin-bottom: 16px;
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    /* Custom Highlight Box */
+    .callout {
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-left: 4px solid var(--accent);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin: 20px 0;
+    }
+
+    .callout h4 {
+      color: var(--accent);
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .callout p {
+      color: #d1fae5;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .callout-warning {
+      background: rgba(245, 158, 11, 0.08);
+      border-color: rgba(245, 158, 11, 0.25);
+      border-left-color: #f59e0b;
+    }
+
+    .callout-warning h4 {
+      color: #fbbf24;
+    }
+
+    .callout-warning p {
+      color: #fef3c7;
+    }
+
+    /* Table */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 20px 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    th {
+      background: var(--surface-card);
+      color: #ffffff;
+      padding: 14px 16px;
+      font-weight: 700;
+      border-bottom: 1px solid var(--border);
+    }
+
+    td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Step Badge in Account Delete */
+    .step-list {
+      list-style: none;
+      margin: 0;
+      counter-reset: step-counter;
+    }
+
+    .step-list li {
+      position: relative;
+      padding-left: 42px;
+      margin-bottom: 16px;
+    }
+
+    .step-list li::before {
+      counter-increment: step-counter;
+      content: counter(step-counter);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #090d16;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 64px;
+      padding-top: 36px;
+      border-top: 1px solid var(--border);
+      color: var(--text-dim);
+      font-size: 14px;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 32px 16px 64px;
+      }
+      h1 {
+        font-size: 28px;
+      }
+      .policy-card {
+        padding: 22px 18px;
+      }
+      .nav-tabs {
+        display: none;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Zula Uygulamasi</h1>
-                  <div class="badge">v1.0.0 (Ilk Resmi Yayin)</div>
-                  <h2>Gizlilik Politikasi ve Kullanim Kosullari</h2>
-        <p>Zula uygulamasi olarak kisisel verilerinizin guvenligi ve gizliligi en onemli onceligimizdir. Bu Aydinlatma Metni, 6698 sayili Kisisel Verilerin Korunmasi Kanunu ("KVKK") uyarinca verilerinizin nasil islendigi hakkinda bilgilendirme sunar.</p>
+  <div class="bg-glow"></div>
 
-                  <h2>1. Toplanan Veriler ve Kullanim Amaclari</h2>
-        <p>Uygulamamiz urun son kullanma tarihlerini ve stok takibini duzenlemek amaciyla calisir. Tum veriler cihazinizda yerel olarak saklanir ve izniniz olmadan ucuncu taraflarla paylasilmaz.</p>
-                  <ul>
-                      <li>Urun adi, kategorisi ve son kullanma tarih bilgileri</li>
-                      <li>Istege bagli bildirim ve hatirlatici ayarlari</li>
-                  </ul>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="brand-pill">
+        <span class="brand-dot"></span>
+        Zula Ekosistemi • Yasal Bildirimler
+      </div>
+      <h1>Gizlilik Politikası ve Aydınlatma Metni</h1>
+      <p class="subtitle">
+        Zula mobil uygulamasını ("Uygulama") kullanırken kişisel verilerinizin nasıl işlendiği, korunduğu ve haklarınız hakkında 6698 sayılı KVKK kapsamında aydınlatma ve bilgilendirme.
+      </p>
+      <div class="meta-bar">
+        <span>📅 <strong>Yürürlük Tarihi:</strong> 24 Eylül 2026</span>
+        <span>🛡️ <strong>Mevzuat:</strong> 6698 sayılı KVKK & GDPR Uyumlu</span>
+        <span>🌐 <strong>Sürüm:</strong> v1.0.0 (İlk Resmi Yayın)</span>
+      </div>
+    </header>
 
-                  <h2>2. Veri Guvenligi ve Depolama</h2>
-                  <p>Verileriniz cihazinizda guvenli bir sekilde saklanir. Sunucularimiza veya harici veritabanlarina kisisel kimlik bilginiz iletilmez.</p>
+    <!-- Quick Navigation Sticky Tabs -->
+    <nav class="nav-tabs">
+      <a href="#sorumlu">1. Veri Sorumlusu</a>
+      <a href="#veriler">2. Toplanan Veriler</a>
+      <a href="#izinler">3. İzinler & Depolama</a>
+      <a href="#konum">4. Konum Politikası</a>
+      <a href="#analitik">5. Analitik & İyileştirme</a>
+      <a href="#guvenlik">6. Güvenlik & Aktarım</a>
+      <a href="#cocuklar">7. Çocukların Gizliliği</a>
+      <a href="#silme">8. Hesap Silme</a>
+      <a href="#haklar">9. Haklarınız</a>
+      <a href="#guncelleme">10. Güncellemeler</a>
+      <a href="#iletisim">11. İletişim & Künye</a>
+    </nav>
 
-        <h2>3. Kullanici Haklari</h2>
-                  <p>KVKK'nin 11. maddesi kapsaminda, verileriniz uzerinde tam kontrole sahipsiniz. Dilediginiz zaman uygulama verilerini temizleyebilir veya kaldirabilirsiniz.</p>
+    <!-- 1. Veri Sorumlusu -->
+    <section id="sorumlu" class="policy-card">
+      <div class="card-header">
+        <div class="card-num">01</div>
+        <h2>Veri Sorumlusu ve Kimlik Bilgileri</h2>
+      </div>
+      <p>
+        Bu Gizlilik Politikası, <strong>Zula</strong> mobil uygulamasının (Android ve iOS) kullanıcılarına ait kişisel verilerin işlenmesine ilişkin şart ve esasları düzenler.
+      </p>
+      <p>
+        Zula olarak kişisel verilerinizin gizliliğine, güvenliğine ve mahremiyetine en yüksek derecede önem veriyoruz. 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") ve ilgili uluslararası mevzuat (GDPR) kapsamında Veri Sorumlusu sıfatıyla hareket etmekteyiz.
+      </p>
+      <div class="callout" style="margin-top: 16px;">
+        <h4>📋 Veri Sorumlusu Resmi Künyesi</h4>
+        <p>
+          <strong>Veri Sorumlusu / Geliştirici:</strong> Ali Aytaç KARABUDAK<br>
+          <strong>Resmi Tebligat Adresi (UETS):</strong> 16800-08457-54181 (Ulusal Elektronik Tebligat Sistemi / Türkiye)<br>
+          <strong>Resmi İletişim E-Postası:</strong> destek@zulaapp.com<br>
+          <strong>Hukuki Muhataplık:</strong> 6698 sayılı KVKK m. 10 ve Aydınlatma Yükümlülüğü Tebliği uyarınca yetkili veri sorumlusudur.
+        </p>
+      </div>
+    </section>
 
-                  <h2>4. Iletisim</h2>
-                  <p>Gizlilik politikamiz veya uygulamanizla ilgili her turlu soru icin gelistirici ekibimizle iletisime gecebilirsiniz:</p>
-                  <p><strong>Gelistirici:</strong> Ali Aytac KARABUDAK (TheAlakar)</p>
-                  <p><strong>E-posta:</strong> privacy@zula-app.com</p>
+    <!-- 2. Toplanan Veriler -->
+    <section id="veriler" class="policy-card">
+      <div class="card-header">
+        <div class="card-num">02</div>
+        <h2>Toplanan Kişisel Veriler ve Kategorileri</h2>
+      </div>
+      <p>Uygulamayı kullandığınızda aşağıdaki kategorilerdeki veriler işlenebilmektedir:</p>
 
-                  <div class="footer">
-            &copy; 2026 Zula App - Tum Haklari Saklidir.
-                  </div>
-              </div>
-          </body>
-          </html>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Veri Kategorisi</th>
+              <th>Açıklama ve İçerik</th>
+              <th>Hukuki Sebep (KVKK m. 5)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Hesap ve Kimlik Bilgileri</strong></td>
+              <td>Kullanıcı adı, e-posta adresi, profil resmi (varsa) ve hane/aile üyeliği kimliği.</td>
+              <td>Bir sözleşmenin kurulması veya ifasıyla doğrudan doğruya ilgili olması (KVKK m. 5/2-c)</td>
+            </tr>
+            <tr>
+              <td><strong>Dolap ve Ürün Verileri</strong></td>
+              <td>Dolaplarınıza eklediğiniz ürün adları, kategorileri, miktarları, birimleri, son kullanma tarihleri ve ürün notları.</td>
+              <td>Bir sözleşmenin kurulması veya ifasıyla doğrudan doğruya ilgili olması (KVKK m. 5/2-c)</td>
+            </tr>
+            <tr>
+              <td><strong>Tüketim ve İsraf Geçmişi</strong></td>
+              <td>Tüketilen veya son kullanma tarihi geçerek imha edilen gıdaların listesi ve tüketim zaman kayıtları.</td>
+              <td>Veri sorumlusunun meşru menfaatleri için veri işlenmesinin zorunlu olması (KVKK m. 5/2-f)</td>
+            </tr>
+            <tr>
+              <td><strong>Alışveriş Listeleri</strong></td>
+              <td>Oluşturduğunuz alışveriş listeleri, eklenen ihtiyaçlar, alınan/alınmayan ürün durumları ve paylaşımlar.</td>
+              <td>Bir sözleşmenin kurulması veya ifasıyla doğrudan doğruya ilgili olması (KVKK m. 5/2-c)</td>
+            </tr>
+            <tr>
+              <td><strong>Konum Verisi (İsteğe Bağlı)</strong></td>
+              <td>Kullanıcının cihaz izinleri üzerinden açık rızasıyla paylaştığı yaklaşık ve/veya kesin coğrafi konum bilgisi.</td>
+              <td>İlgili kişinin Açık Rızası (KVKK m. 5/1)</td>
+            </tr>
+            <tr>
+              <td><strong>Teknik Cihaz ve Log Verileri</strong></td>
+              <td>Cihaz modeli, işletim sistemi sürümü (Android/iOS), uygulama dili, çökme/hata kayıtları ve erişim logları.</td>
+              <td>Meşru Menfaat (KVKK m. 5/2-f) ve Hukuki Yükümlülüğün Yerine Getirilmesi (5651 s. Kanun / KVKK m. 5/2-ç)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size: 14px; margin-top: 14px; color: var(--text-dim);">
+        <strong>Toplama Yöntemi:</strong> Kişisel verileriniz; Zula mobil uygulamasını cihazınıza yüklemeniz, kullanıcı hesabı ve hane oluşturmanız, ürün ve dolap girişleri yapmanız ve cihaz izinlerini onaylamanız suretiyle tamamen veya kısmen otomatik elektronik yöntemlerle elde edilmektedir.
+      </p>
+
+      <div class="callout" style="margin-top: 20px;">
+        <h4>💳 Uygulama İçi Satın Almalar ve Ödeme Güvenliği</h4>
+        <p>
+          Zula mobil uygulamasında sunulabilecek premium abonelik veya ek özelliklere ilişkin tüm ödeme ve tahsilat işlemleri; doğrudan <strong>Apple App Store (Apple Inc.)</strong> veya <strong>Google Play Store (Google LLC)</strong> uygulama içi satın alma (In-App Purchase / Google Play Billing) güvenli altyapıları üzerinden yürütülür.<br><br>
+          Zula; kredi kartı numaranız, son kullanma tarihi, CVV güvenlik kodu veya banka hesap detaylarınız gibi hassas finansal verilerinize <strong>kesinlikle erişemez, bunları sistemlerinde işlemez ve saklamaz</strong>. Ödeme süreçleri ilgili mağazanın kendi gizlilik ve güvenlik şartlarına tabidir.
+        </p>
+      </div>
+    </section>
+
+    <!-- 3. Cihaz İzinleri ve Yerel Depolama -->
+    <section id="izinler" class="policy-card">
+      <div class="card-header">
+        <div class="card-num">03</div>
+        <h2>Cihaz İzinleri, Çerezler ve Yerel Depolama (AsyncStorage)</h2>
+      </div>
+      <p>Zula, size eksiksiz ve modern bir asistan deneyimi sunmak adına cihazınızdan aşağıdaki izinleri talep edebilir:</p>
+
+      <ul>
+        <li>
+          <strong>📷 Kamera ve Galeri İzni:</strong> Yalnızca gıda ürünlerinin üzerindeki son kullanma tarihlerinin (SKT / TETT) otomatik optik tespiti (OCR) ve barkod okuma işlemleri için kullanılır. Kamera akışı veya seçilen görseller, yalnızca anlık veri ayrıştırma (tarama) amacıyla işlenir; sunucularımızda veya harici veritabanlarında kalıcı bir fotoğraf arşivi, yüz tanıma veya biyometrik profil çıkarma amacıyla kesinlikle saklanmaz ve depolanmaz.
+        </li>
+        <li>
+          <strong>🎙️ Mikrofon İzni:</strong> Sesli komutla dolaba ürün ekleme, alışveriş listesi doldurma ve sesli tüketim bildirimi yapabilmeniz amacıyla konuşmanın anlık olarak metne dönüştürülmesi (STT) için kullanılır. Ses kayıtları sistemlerimizde kalıcı bir ses dosyası olarak arşivlenmez, dinlenmez, profilleme amacıyla işlenmez veya üçüncü kişilere aktarılmaz.
+        </li>
+        <li>
+          <strong>🔔 Bildirim İzni:</strong> Son kullanma tarihi yaklaşan gıdalarınızı vaktinde tüketebilmeniz, israfı önleyebilmeniz ve ev/hane üyelerinin yaptığı güncellemelerden haberdar olabilmeniz için hatırlatıcı bildirimler göndermek amacıyla kullanılır.
+        </li>
+      </ul>
+
+      <div class="callout" style="margin-top: 20px;">
+        <h4>🍪 Çerezler ve Yerel Depolama (AsyncStorage) Güvencesi</h4>
+        <p>
+          Zula mobil uygulaması, kullanıcıları profilleyen veya izleyen üçüncü taraf reklam takip çerezleri (tracking cookies) <strong>kesinlikle kullanmamaktadır</strong>.<br><br>
+          Uygulama; yalnızca oturum güvenliğinin sağlanması, tema/arayüz tercihlerinizin hatırlanması ve internet kesintilerinde kilerinizin kesintisiz çevrimdışı (offline-first) çalışabilmesi amacıyla cihazınızın yerel depolama teknolojisinden (<em>AsyncStorage</em>) faydalanır. Bu veriler cihazınızda yerel olarak barınır ve dilediğiniz zaman uygulama önbelleğini temizleyerek silebilirsiniz.
+        </p>
+      </div>
+    </section>
+
+    <!-- 4. Konum Politikası (İsteğe Bağlı) -->
+    <section id="konum" class="policy-card">
+      <div class="card-header">
+        <div class="card-num">04</div>
+        <h2>Konum Verileri ve İsteğe Bağlılık Politikası</h2>
+      </div>
+      
+      <div class="callout">
+        <h4>📍 Konum İzni Tamamen İsteğe Bağlıdır</h4>
+        <p>
+          Zula, kullanıcının cihaz ayarları üzerinden açık rıza göstermesi halinde konum verilerine erişir. Konum izni vermemek, uygulamanın temel işlevlerini (ürün ekleme, tüketim takibi, dolap yönetimi, tarifler) kullanmanıza <strong>asla engel değildir</strong>.
+        </p>
+      </div>
+
+      <p>
+        Konum verileriniz (onay vermeniz halinde); bulunduğunuz bölgeye uygun içerik ve tavsiyelerin sunulması, kullanıcı deneyiminin kişiselleştirilmesi, hizmet kalitesinin artırılması ve uygulamanın geliştirilmesine yönelik iç analizlerin yürütülmesi amacıyla işlenmektedir.
+      </p>
+      <p>
+        Kullanıcı dilediği an cihazının <em>Ayarlar > Uygulamalar > Zula > İzinler</em> menüsünden konum iznini tek dokunuşla kapatabilir veya izin tercihlerini değiştirebilir.
+      </p>
+    </section>
+
+    <!-- 5. Hizmet İyileştirme ve İstatistiki Analizler -->
+    <section id="analitik" class="policy-card">
+      <div class="card-header">
+        <div class="card-num">05</div>
+        <h2>Hizmet İyileştirme ve İstatistiki Analizler</h2>
+      </div>
+      <p>
+        Uygulama performansını artırmak, kullanıcı deneyimini optimize etmek ve gıda takip algoritmalarının doğruluğunu geliştirmek amacıyla; genel kullanım eğilimleri ve istatistiki veriler <strong>toplu (aggregated) ve kişisel kimlikten arındırılmış (anonim)</strong> olarak işlenebilmektedir.
+      </p>
+      <p>
+        Bu veriler doğrudan şahsınızla veya kişisel kimlik bilgilerinizle eşleştirilmez; yalnızca sistemin genel verimliliğini ve hizmet kalitesini ölçümlemek amacıyla değerlendirilir.
+      </p>
+    </section>
+
+    <!-- 6. Güvenlik, Altyapı ve Veri Aktarımı -->
+    <section id="guvenlik" class="policy-card">
+      <div class="card-header">
+        <div class="card-num">06</div>
+        <h2>Veri Güvenliği, Altyapı ve Veri Aktarımı (Alıcı Grupları)</h2>
+      </div>
+      <p>
+        Zula; kullanıcı verilerinin gizliliğini ve bütünlüğünü korumak adına uluslararası kabul görmüş yüksek güvenlik standartlarını uygulamakta ve kişisel veri aktarımlarını KVKK m. 8 ve m. 9 hükümlerine tam uyumlu olarak yürütmektedir.
+      </p>
+
+      <div class="callout" style="margin-top: 16px;">
+        <h4>🛡️ Altyapı ve Teknik Güvenlik Standartları</h4>
+        <p>
+          <strong>• Uçtan Uca Şifreleme:</strong> Uygulama ve sunucu arasındaki tüm veri trafiği modern 256-bit SSL/TLS şifreleme protokolleriyle korunur.<br>
+          <strong>• Satır Düzeyinde Güvenlik (Row Level Security - RLS):</strong> Veritabanı mimarisinde satır bazlı erişim denetimi uygulanır. Dolap, kiler ve ürün verilerinize yalnızca sizin yetkilendirdiğiniz hane üyeleri erişebilir; yabancı cihaz veya kullanıcıların verilere erişimi mimari düzeyde engellenmiştir.<br>
+          <strong>• Uluslararası Güvenlik Sertifikasyonları:</strong> Sistem mimarisi, ISO/IEC 27001, SOC 2 Type II gibi küresel bilgi güvenliği standartlarına sahip güvenli ortamlarda barındırılır.
+        </p>
+      </div>
+
+      <div style="margin: 24px 0 16px;">
+        <h3 style="font-size: 17px; color: #ffffff; margin-bottom: 12px; font-weight: 700;">🔄 Kişisel Verilerin Aktarılması ve Alıcı Grupları (KVKK m. 8 ve m. 10/1-c)</h3>
+        <p>
+          Kişisel verileriniz; kanuni yükümlülüklerimizin ifası, uygulamanın teknik altyapısının işletilmesi ve sözleşmesel hizmetin eksiksiz sunulabilmesi amacıyla, KVKK’nın 8. ve 9. maddelerindeki şartlara riayet edilerek yalnızca aşağıdaki <strong>Alıcı Grupları</strong> ile paylaşılabilmektedir:
+        </p>
+        <ul>
+          <li>
+            <strong>Bulut Bilişim ve Veritabanı Hizmet Sağlayıcıları:</strong> Kullanıcı kimlik doğrulama süreçleri, dolap ve ürün verilerinin yedeklenmesi, kiler envanterinin güvenli muhafazası ve haneler arası eşzamanlı veri senkronizasyonunun sağlanması amacıyla teknik altyapı hizmeti sağlayıcılarına <em>(Sözleşmenin Kurulması ve İfası - KVKK m. 5/2-c; Meşru Menfaat - KVKK m. 5/2-f)</em>.
+          </li>
+          <li>
+            <strong>Mobil İşletim Sistemi ve Anlık Bildirim (Push) Altyapı Sağlayıcıları:</strong> Son kullanma tarihi hatırlatmaları, kiler uyarıları ve hane güncellemelerinin mobil cihazınıza iletilebilmesi için Apple (APNs) ve Google (FCM) işletim sistemi servislerine; yalnızca cihazın anonim bildirim belirteci (Push Token) aktarılır <em>(Sözleşmenin İfası - KVKK m. 5/2-c)</em>.
+          </li>
+          <li>
+            <strong>Uygulama Mağazası ve Ödeme Altyapıları:</strong> Premium özellikler veya abonelikler söz konusu olduğunda, satın almanın doğrulanması amacıyla Apple App Store (Apple Inc.) ve Google Play Store (Google LLC) sistemlerine <em>(Sözleşmenin İfası - KVKK m. 5/2-c)</em>.
+          </li>
+          <li>
+            <strong>Yetkili Kamu ve Adli Merciler:</strong> Kanunen yetkili kılınmış adli, idari veya kolluk makamlarının mevzuata uygun resmi taleplerinin karşılanması amacıyla <em>(Veri Sorumlusunun Hukuki Yükümlülüğü - KVKK m. 5/2-ç)</em>.
+          </li>
+        </ul>
+      </div>
+
+      <div class="callout callout-warning" style="margin-top: 18px;">
+        <h4>🌐 Yurt Dışına Veri Aktarımı (KVKK m. 9)</h4>
+        <p>
+          Uygulamanın kesintisiz, yüksek performanslı ve modern bulut mimarisiyle çalışabilmesi adına; veritabanı ve yedekleme altyapısı, gerekli teknik ve idari tedbirlerin alındığı yurt içi ve/veya yurt dışındaki (Avrupa Birliği ve ABD güvenli veri bölgeleri) sunucularda barındırılmaktadır.<br><br>
+          7499 sayılı Kanun ile güncellenen 6698 sayılı KVKK’nın 9. maddesi uyarınca; yurt dışına veri aktarımı, hizmet sözleşmesinin ifası (m. 5/2-c) ve uluslararası geçerliliğe sahip standart sözleşme/uygun güvence mekanizmaları (Standard Contractual Clauses) çerçevesinde hukuka uygun olarak yürütülmektedir.
+        </p>
+      </div>
+
+      <ul>
+        <li><strong>Hane Davet Kodu ve Hesap Güvenliği Sorumluluğu:</strong> Kullanıcı; hane davet kodunu, oturum erişim bilgilerini ve cihaz güvenliğini yalnızca güven duyduğu aile/hane üyeleriyle paylaşmakla ve gizliliğini korumakla yükümlüdür. Davet kodunun kullanıcının kendi iradesi, rızası veya dikkatsizliği neticesinde yetkisiz üçüncü şahıslara iletilmesi sonucu hane dolaplarının veya ürün verilerinin başkaları tarafından görüntülenmesinden Zula sorumlu tutulamaz.</li>
+        <li><strong>Veri Saklama Süresi ve Periyodik İmha:</strong> Kişisel verileriniz, üyeliğiniz aktif olduğu sürece veya işlendikleri meşru amaç için gerekli olan makul süre boyunca muhafaza edilir. Üyeliğin sona ermesi veya hesap silme talebi halinde; kanuni zamanaşımı ve saklama yükümlülükleri saklı kalmak kaydıyla, verileriniz ilk periyodik imha sürecinde kalıcı olarak silinir veya anonim hale getirilir.</li>
+        <li><strong>Veri Satış Yasağı:</strong> Kişisel verileriniz hiçbir veri komisyoncusuna, reklam takip ağına veya yetkisiz üçüncü şahıslara ticari kazanç amacıyla devredilmez veya satılmaz.</li>
+      </ul>
+    </section>
+
+    <!-- 7. Çocukların Gizliliği (COPPA / Yaş Sınırı) -->
+    <section id="cocuklar" class="policy-card">
+      <div class="card-header">
+        <div class="card-num">07</div>
+        <h2>Çocukların Gizliliği (COPPA ve Yaş Sınırı)</h2>
+      </div>
+      <p>
+        Zula mobil uygulaması genel kullanıcı kitlesine yönelik bir ev ve kiler yönetim asistanı olup, <strong>13 yaşın (veya ikamet edilen ülkenin mevzuatında öngörülen geçerli rıza yaşının) altındaki çocuklara yönelik değildir</strong>.
+      </p>
+      <div class="callout callout-warning">
+        <h4>🛡️ Çocuk Verilerinin Korunması İlkesi</h4>
+        <p>
+          Uygulamamız 13 yaş altındaki çocuklardan bilerek ve isteyerek hiçbir kişisel veri toplamamaktadır. Bir ebeveynin veya yasal vasinin izni ve bilgisi olmaksızın 13 yaşından küçük bir çocuğun kişisel verilerinin tarafımıza iletildiğinin fark edilmesi halinde, söz konusu veriler ve ilişkili kullanıcı hesabı derhal ve kalıcı olarak sistemlerimizden silinir.
+        </p>
+      </div>
+      <p>
+        Ebeveyn veya yasal vasiler, çocuklarına ait bir bilginin sistemlerimize aktarıldığını düşünüyorsa, <a href="mailto:destek@zulaapp.com" style="color:var(--accent); font-weight:600; text-decoration:none;">destek@zulaapp.com</a> adresi üzerinden bizimle derhal irtibata geçebilir.
+      </p>
+    </section>
+
+    <!-- 8. Hesap ve Veri Silme (APPLE & GOOGLE ZORUNLU ŞARTI) -->
+    <section id="silme" class="policy-card">
+      <div class="card-header">
+        <div class="card-num">08</div>
+        <h2>Hesap Silme ve Kalıcı Veri İmhası</h2>
+      </div>
+      
+      <p>
+        Apple App Store ve Google Play yönergeleri doğrultusunda, kullanıcılarımızın tüm verilerini istedikleri an geri döndürülemez şekilde silme hakkı bulunmaktadır.
+      </p>
+
+      <div class="callout callout-warning">
+        <h4>⚠️ Kalıcı Silme Güvencesi</h4>
+        <p>
+          Hesabınızı sildiğinizde; profiliniz, hane ortaklığınız, dolaplarınız, tüm ürün kayıtlarınız, tüketim geçmişiniz ve alışveriş listeleriniz veritabanımızdan <strong>kademeli silme (Cascading Delete)</strong> ile anında ve kalıcı olarak temizlenir.
+        </p>
+      </div>
+
+      <p><strong>Hesabınızı ve verilerinizi silmek için 2 yöntem:</strong></p>
+      <ul class="step-list">
+        <li>
+          <strong>Uygulama İçinden (Anında):</strong> Zula uygulamasında <em>Ayarlar</em> sekmesine gidin. En altta bulunan <em>"Hesabımı ve Tüm Verilerimi Sil"</em> butonuna dokunup onaylayın.
+        </li>
+        <li>
+          <strong>E-Posta / Destek Yoluyla:</strong> Kayıtlı e-posta adresinizden <a href="mailto:destek@zulaapp.com" style="color:var(--accent); font-weight:600;">destek@zulaapp.com</a> adresine "Hesap Silme Talebi" konulu bir ileti göndermeniz halinde talebiniz en geç 48 saat içinde işleme alınarak verileriniz tamamen imha edilir.
+        </li>
+      </ul>
+    </section>
+
+    <!-- 9. Haklarınız (KVKK & GDPR) -->
+    <section id="haklar" class="policy-card">
+      <div class="card-header">
+        <div class="card-num">09</div>
+        <h2>Kullanıcı Hakları ve Başvuru Usulü (KVKK & GDPR)</h2>
+      </div>
+      <p>İlgili mevzuat uyarınca her kullanıcı aşağıdaki haklara sahiptir:</p>
+      <ul>
+        <li>Kişisel verilerinizin işlenip işlenmediğini öğrenme,</li>
+        <li>İşlenmişse buna ilişkin bilgi talep etme ve kopyasını isteme,</li>
+        <li>İşlenme amacını ve bunların amacına uygun kullanılıp kullanılmadığını öğrenme,</li>
+        <li>Eksik veya yanlış işlenmiş olması hâlinde bunların düzeltilmesini isteme,</li>
+        <li>KVKK ve GDPR şartları çerçevesinde verilerin silinmesini veya yok edilmesini talep etme,</li>
+        <li>İşlenen verilerin münhasıran otomatik sistemler vasıtasıyla analiz edilmesi suretiyle aleyhinize bir sonucun ortaya çıkmasına itiraz etme.</li>
+      </ul>
+      <p style="margin-top: 14px; font-size: 14px; border-top: 1px solid var(--border-light); padding-top: 14px;">
+        <strong>Resmi Başvuru Yolu:</strong> 6698 sayılı Kanun’un 11. maddesi kapsamındaki haklarınıza ilişkin taleplerinizi, <em>Veri Sorumlusuna Başvuru Usul ve Esasları Hakkında Tebliğ</em> uyarınca, Zula sistemine kayıtlı e-posta adresiniz üzerinden <a href="mailto:destek@zulaapp.com" style="color:var(--accent); font-weight:600; text-decoration:none;">destek@zulaapp.com</a> adresine konu kısmına <em>"KVKK Bilgi Edinme Talebi"</em> yazarak iletebilirsiniz. Başvurularınız niteliğine göre en kısa sürede ve en geç 30 (otuz) gün içinde ücretsiz olarak sonuçlandırılacaktır.
+      </p>
+    </section>
+
+    <!-- 10. Politika Değişiklikleri ve Yürürlük -->
+    <section id="guncelleme" class="policy-card">
+      <div class="card-header">
+        <div class="card-num">10</div>
+        <h2>Politika Değişiklikleri ve Yürürlük</h2>
+      </div>
+      <p>
+        Zula, yasal mevzuatta meydana gelebilecek değişiklikler, idari kararlar, teknik gereklilikler veya uygulamaya eklenecek yeni özellikler doğrultusunda işbu Aydınlatma Metni ve Gizlilik Politikasında her zaman tek taraflı değişiklik ve güncelleme yapma hakkını saklı tutar.
+      </p>
+      <p>
+        Yapılan değişiklikler güncel metnin bu sayfada yayımlandığı tarihte derhal yürürlüğe girer. Kullanıcılarımızın veri güvenliğini veya haklarını doğrudan etkileyebilecek esaslı değişiklikler söz konusu olduğunda, uygulama içi bildirim ekranları veya kayıtlı e-posta adresleri vasıtasıyla gerekli bilgilendirmeler yapılacaktır.
+      </p>
+    </section>
+
+    <!-- 11. İletişim ve Resmi Künye -->
+    <section id="iletisim" class="policy-card">
+      <div class="card-header">
+        <div class="card-num">11</div>
+        <h2>İletişim ve Resmi Künye</h2>
+      </div>
+      <p>
+        Gizlilik Politikamız, kişisel verileriniz veya kullanım koşullarımızla ilgili her türlü soru, görüş ve yasal talepleriniz için bizimle doğrudan iletişime geçebilirsiniz:
+      </p>
+      <div class="callout">
+        <h4>📬 Resmi İletişim & Künye Bilgileri</h4>
+        <p>
+          <strong>Uygulama Adı:</strong> Zula — Akıllı Kiler & Mutfak Asistanı<br>
+          <strong>Veri Sorumlusu / Geliştirici:</strong> Ali Aytaç KARABUDAK<br>
+          <strong>Resmi Tebligat Adresi (UETS):</strong> 16800-08457-54181 (Ulusal Elektronik Tebligat Sistemi / Türkiye)<br>
+          <strong>Destek & İletişim E-posta:</strong> <a href="mailto:destek@zulaapp.com" style="color:#d1fae5; text-decoration:underline;">destek@zulaapp.com</a><br>
+          <strong>Web / Yasal Yayın URL:</strong> <a href="https://thealakar.github.io/legal" target="_blank" rel="noopener noreferrer" style="color:#d1fae5; text-decoration:underline;">https://thealakar.github.io/legal</a><br>
+          <strong>Hukuki Bildirim Dili:</strong> Türkçe (Resmi ve Bağlayıcı Metin)
+        </p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>© 2026 Zula. Tüm hakları saklıdır.</p>
+      <p style="margin-top: 8px;">
+        Bu belge Apple App Store Review Guideline 5.1.1 ve Google Play Geliştirici Politikaları ile tam uyumludur.
+      </p>
+    </footer>
+  </div>
+</body>
+</html>
